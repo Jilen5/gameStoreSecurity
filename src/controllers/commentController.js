@@ -40,7 +40,7 @@ class CommentController {
         try {
             const { id } = req.params;
             const { content, note, type } = req.body;
-            const Comment = await Comment.update(Number(id), { content, note, type });
+            const updatedComment = await Comment.update(Number(id), { content, note, type });
             if (!updatedComment) {
                 return res.status(404).json({ error: "Commentaire non trouvé" });
             }
