@@ -6,113 +6,113 @@ import { authorizeRoles } from "../middlewares/Roles.js";
 const router = express.Router();
 
 /**
- * @openapi 
+ * @openapi
  * /api/categories/:
- * GET: 
- *      summary: Récupére tout les categories
- *      parameters:
- *        - in: path
- *         name: id
- *        required: true
- *        schema:
- *         type: integer
- *        description: l'id de la category
+ *   get:
+ *     summary: Récupère toutes les catégories
  *     responses:
  *       200:
- *        description: La liste des categories
- *      404:
- *       description: Categorie non trouvé
- * 
+ *         description: La liste des catégories
+ *       404:
+ *         description: Catégories non trouvées
  */
 router.get("/", authenticateToken, CategoryController.listCategories);
+
 /**
  * @openapi
  * /api/categories/{id}:
- * GET:
- *     summary: Récupére une categorie par son id
- *    parameters:
- *      - in: path
- *       name: id
- *     required: true
- *    schema:
- *     type: integer
- *    description: l'id de la category
- *  responses:
- *     200:
- *      description: Une categorie
- *    404:
- *     description: Categorie non trouvé
+ *   get:
+ *     summary: Récupère une catégorie par son id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: L'id de la catégorie
+ *     responses:
+ *       200:
+ *         description: Une catégorie
+ *       404:
+ *         description: Catégorie non trouvée
  */
 router.get("/:id", authenticateToken, CategoryController.getCategory);
+
 /**
  * @openapi
  * /api/categories/:
- * POST:
- *    summary: Crée une nouvelle categorie
- *   requestBody:
- *    required: true
- *   content:
- *    application/json:
- *     schema:
- *      type: object
- *     properties:
- *      name:
- *       type: string
- *      description: Le nom de la categorie
- *    responses:
- *     201:
- *     description: Categorie crée
- *    500:
- *     description: Erreur serveur interne
+ *   post:
+ *     summary: Crée une nouvelle catégorie
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *                 description: Le nom de la catégorie
+ *     responses:
+ *       201:
+ *         description: Catégorie créée
+ *       500:
+ *         description: Erreur serveur interne
  */
 router.post("/", authenticateToken, authorizeRoles("admin"), CategoryController.createCategory);
-/**
- * @openapi
- * /api/categories/{id}:
- * PUT:
- *   summary: Met à jour une categorie par son id
- *   parameters:
- *    - in: path
- *     name: id
- *   required: true
- *   schema:
- *    type: integer
- *   description: l'id de la category
- *   requestBody:
- *    required: true
- *   content:
- *   application/json:
- *   schema:
- *    type: object
- *   properties:
- *    name:
- *     type: string
- *    description: Le nom de la categorie
- *   responses:
- *   200:
- *    description: Categorie mise à jour
- *   404:
- *    description: Categorie non trouvé
- */
 
-router.put("/:id", authenticateToken, authorizeRoles("admin"), CategoryController.updateCategory);
 /**
  * @openapi
  * /api/categories/{id}:
- * DELETE:
- *      summary: Supprime une categorie par son id 
- *      parameters:
+ *   put:
+ *     summary: Met à jour une catégorie par son id
+ *     parameters:
  *       - in: path
- *        name: id
- *     required: true
- *    schema:
- *     type: integer
- *   description: l'id de la category
- *  responses:
- *    204:
- *     description: Categorie supprimée
- *    500:
- *     description: Erreur serveur interne
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: L'id de la catégorie
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *                 description: Le nom de la catégorie
+ *     responses:
+ *       200:
+ *         description: Catégorie mise à jour
+ *       404:
+ *         description: Catégorie non trouvée
+ */
+router.put("/:id", authenticateToken, authorizeRoles("admin"), CategoryController.updateCategory);
+
+/**
+ * @openapi
+ * /api/categories/{id}:
+ *   delete:
+ *     summary: Supprime une catégorie par son id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: L'id de la catégorie
+ *     responses:
+ *       204:
+ *         description: Catégorie supprimée
+ *       500:
+ *         description: Erreur serveur interne
  */
 router.delete("/:id", authenticateToken, authorizeRoles("admin"), CategoryController.deleteCategory);
+
 export default router;
