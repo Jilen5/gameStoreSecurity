@@ -20,7 +20,7 @@ app.use(
     })
 );
 
-const userRoutes = require("./routes/userRoutes.js");
+import userRoutes from "./routes/userRoutes.js";
 app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => res.json({ message: "API OK" }));
