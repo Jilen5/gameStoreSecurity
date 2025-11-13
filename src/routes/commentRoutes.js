@@ -5,10 +5,122 @@ import { authorizeRoles } from "../middlewares/Roles.js";
 
 const router = express.Router();
 
+/**
+ * @openapi
+ * /api/comments/:
+ * GET:
+ *      summary: Récupére tout les commentaires 
+ *      parameters:
+ *       - in: path
+ *        name: id
+ *       required: true
+ *      schema:
+ *    type: integer
+ *     description: l'id du commentaire
+ *   responses:
+ *    200:
+ *     description: La liste des commentaires
+ *    404:
+ *     description: Commentaire non trouvé
+ */
 router.get("/", authenticateToken, CommentController.listComments);
+/**
+ * @openapi
+ * /api/comments/{id}:
+ * GET:
+ *    summary: Récupére un commentaire par son id
+ *   parameters:
+ *    - in: path
+ *    name: id
+ *  required: true
+ *   schema:
+ *   type: integer
+ *  description: l'id du commentaire
+ *  responses:
+ *   200:
+ *    description: Un commentaire
+ *   404:
+ *    description: Commentaire non trouvé
+ */
 router.get("/:id", authenticateToken, CommentController.getComment);
+/**
+ * @openapi
+ * /api/comments/:
+ * POST:
+ *   summary: Crée un nouveau commentaire
+ *  requestBody:
+ *   required: true
+ *  content:
+ *   application/json:
+ *   schema:
+ *   type: object
+ *  properties:
+ *   content:
+ *    type: string
+ *    note:
+ *      type: integer
+ *      type:
+ *      type: string
+ *   description: Le contenu, la note et le type du commentaire
+ *   responses:
+ *    201:
+ *      description: Commentaire crée
+ *    400:
+ *     description: Requête invalide
+ */
 router.post("/", authenticateToken, CommentController.createComment);
+/**
+ * @openapi
+ * /api/comments/{id}:
+ * PUT:
+ *      summary: Met à jour un commentaire par son id
+ *      parameters:
+ *          - in: path
+ *          name: id
+ *        required: true
+ *       schema:
+ *          type: integer
+ *          description: l'id du commentaire
+ *      requestBody:
+ *          required: true
+ *      content:
+ *        application/json:
+ *         schema:
+ *          type: object
+ *         properties:
+ *          content:
+ *          type: string
+ *         note:
+ *          type: integer
+ *        type:
+ *        type: string
+ *     description: Le contenu, la note et le type du commentaire
+ *    responses:
+ *    200:
+ *     description: Commentaire mis à jour
+ *    404:
+ *     description: Commentaire non trouvé
+ */
 router.put("/:id", authenticateToken, authorizeRoles("admin"), CommentController.updateComment);
+/**
+ * @openapi
+ * /api/comments/{id}:
+ * DELETE:
+ *     summary: Supprime un commentaire par son id
+ *     parameters:
+ *      - in: path
+ *       name: id
+ *      required: true
+ *    schema:
+ *    type: integer
+ *      description: l'id du commentaire
+ *   responses:
+ *   204:
+ *    description: Commentaire supprimé
+ *   404:
+ *     description: Commentaire non trouvé
+ */
 router.delete("/:id", authenticateToken, authorizeRoles("admin"), CommentController.deleteComment);
+
 
 export default router;
