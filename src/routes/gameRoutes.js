@@ -1,5 +1,7 @@
 import express from "express";
 import GameController from "../controllers/gameController.js";
+import { authenticateToken } from "../middlewares/Auth.js";
+import { authorizeRoles } from "../middlewares/Roles.js";
 
 const router = express.Router();
 
@@ -21,7 +23,7 @@ const router = express.Router();
  *   404:
  *      description: Jeu non trouvé
  */
-router.get("/", GameController.listGames);
+router.get("/", authenticateToken, GameController.listGames);
 /**
  * @openapi
  * /api/games/{id}:
@@ -40,7 +42,7 @@ router.get("/", GameController.listGames);
  *    404:
  *     description: Jeu non trouvé
  */
-router.get("/:id", GameController.getGame);
+router.get("/:id", authenticateToken, GameController.getGame);
 /**
  * @openapi
  * /api/games/:
@@ -64,7 +66,7 @@ router.get("/:id", GameController.getGame);
  *      400:
  *        description: Requête invalide
  */
-router.post("/", GameController.createGame);
+router.post("/", authenticateToken, authorizeRoles("admin"), GameController.createGame);
 /**
  * @openapi
  * /api/games/{id}:
@@ -95,7 +97,7 @@ router.post("/", GameController.createGame);
  *    404:
  *     description: Jeu non trouvé
  */
-router.put("/:id", GameController.updateGame);
+router.put("/:id", authenticateToken, authorizeRoles("admin"), GameController.updateGame);
 /**
  * @openapi
  * /api/games/{id}:
@@ -114,6 +116,6 @@ router.put("/:id", GameController.updateGame);
  *   404:
  *    description: Jeu non trouvé 
  */
-router.delete("/:id", GameController.deleteGame);
+router.delete("/:id", authenticateToken, authorizeRoles("admin"), GameController.deleteGame);
 
 export default router;

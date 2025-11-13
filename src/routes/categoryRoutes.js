@@ -1,5 +1,7 @@
 import express from "express";
 import CategoryController from "../controllers/categoryController.js";
+import { authenticateToken } from "../middlewares/Auth.js";
+import { authorizeRoles } from "../middlewares/Roles.js";
 
 const router = express.Router();
 
@@ -22,7 +24,7 @@ const router = express.Router();
  *       description: Categorie non trouvé
  * 
  */
-router.get("/", CategoryController.listCategories);
+router.get("/", authenticateToken, CategoryController.listCategories);
 /**
  * @openapi
  * /api/categories/{id}:
@@ -41,7 +43,7 @@ router.get("/", CategoryController.listCategories);
  *    404:
  *     description: Categorie non trouvé
  */
-router.get("/:id", CategoryController.getCategory);
+router.get("/:id", authenticateToken, CategoryController.getCategory);
 /**
  * @openapi
  * /api/categories/:
@@ -63,7 +65,7 @@ router.get("/:id", CategoryController.getCategory);
  *    500:
  *     description: Erreur serveur interne
  */
-router.post("/", CategoryController.createCategory);
+router.post("/", authenticateToken, authorizeRoles("admin"), CategoryController.createCategory);
 /**
  * @openapi
  * /api/categories/{id}:
@@ -92,7 +94,8 @@ router.post("/", CategoryController.createCategory);
  *   404:
  *    description: Categorie non trouvé
  */
-router.put("/:id", CategoryController.updateCategory);
+
+router.put("/:id", authenticateToken, authorizeRoles("admin"), CategoryController.updateCategory);
 /**
  * @openapi
  * /api/categories/{id}:
@@ -111,6 +114,5 @@ router.put("/:id", CategoryController.updateCategory);
  *    500:
  *     description: Erreur serveur interne
  */
-router.delete("/:id", CategoryController.deleteCategory);
-
+router.delete("/:id", authenticateToken, authorizeRoles("admin"), CategoryController.deleteCategory);
 export default router;
