@@ -6,17 +6,16 @@ const JWT_SECRET = process.env.JWT_SECRET || "dev_secret";
 
 class UserController{
 
-    static async listUsers(req, res){
+    static async listUsers(req, res, next){
         try {
             const data = await User.findAll();
             return res.status(200).json(data);
-        } catch (e) {
-            console.error(e);
-            res.status(500).json({ message: "Erreur serveur interne" });
+        } catch (err) {
+            next(err);
         }
     };
 
-    static async getUser(req, res){
+    static async getUser(req, res, next){
         try {
             const { id } = req.params;
 
@@ -24,13 +23,12 @@ class UserController{
             if (!user) return res.status(404).json({ error: "Utilisateur non trouvé" });
 
             return res.status(200).json({user});
-        } catch (e) { 
-            console.error(e);
-            res.status(500).json({ message: "Erreur serveur interne" });
+        } catch (err) { 
+            next(err);
         }
     }
 
-    static async register(req, res) {
+    static async register(req, res, next) {
         try {
             const { username, email, password } = req.body;
 
@@ -44,13 +42,12 @@ class UserController{
             const newUser = await User.create(username, email, hashedPassword, 2);
 
             res.status(201).json({ message: "Utilisateur créé avec succès", user: newUser });
-        } catch (e) {
-            console.error(e);
-            res.status(500).json({ message: "Erreur serveur interne" });
+        } catch (err) {
+            next(err);
         }
     }
 
-    static async login(req, res) {
+    static async login(req, res, next) {
         try {
             const { email, password } = req.body;
 
@@ -71,13 +68,12 @@ class UserController{
             );
 
             res.status(200).json({ message: "Connexion réussie", token });
-        } catch (e) {
-            console.error(e);
-            res.status(500).json({ message: "Erreur serveur interne" });
+        } catch (err) {
+            next(err);
         }
     }
 
-    static async updateUser(req, res){
+    static async updateUser(req, res, next){
         try {
             const { id } = req.params;
             const { username, email, password } = req.body;
@@ -86,13 +82,12 @@ class UserController{
             if(!updatedUser) return res.status(404).json({ error: "Utilisateur non trouvé" });
 
             res.status(200).json({ message: "Utilisateur modifié", updatedUser });
-        } catch (e) {
-            console.error(e);
-            res.status(500).json({ message: "Erreur serveur interne" });
+        } catch (err) {
+            next(err);
         }
     }
 
-    static async deleteUser(req, res){
+    static async deleteUser(req, res, next){
         try {
             const { id } = req.params;
 
@@ -100,9 +95,8 @@ class UserController{
             if(!deletedUser) return res.status(404).json({ error: "Utilisateur non trouvé" });
 
             res.status(204).json({ message: "Utilisateur supprimé", deletedUser });
-        } catch (e) {
-            console.error(e);
-            res.status(500).json({ message: "Erreur serveur interne" });
+        } catch (err) {
+            next(err);
         }
     }
 

@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
+import errorHandler from "./middlewares/Errors.js";
 
 const app = express();
 
@@ -23,5 +24,7 @@ const userRoutes = require("./routes/userRoutes.js");
 app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => res.json({ message: "API OK" }));
+
+app.use(errorHandler);
 
 export default app;
