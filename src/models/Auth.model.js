@@ -18,7 +18,7 @@ class AuthModel {
             {
                 id: user.id_user,
                 email: user.email,
-                role: user.roleName
+                role: user.rolename || user.role || user.name
             },
             JWT_SECRET,
             { expiresIn: "1h" }

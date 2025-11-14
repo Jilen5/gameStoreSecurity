@@ -31,6 +31,7 @@ class AuthController {
             const { email, password } = req.body;
 
             const user = await User.findByEmail(email);
+            console.log("User depuis findByEmail:", user);
             if (!user) return res.status(401).json({ message: "Identifiants invalides" });
 
             const match = await AuthModel.comparePassword(password, user.password);
@@ -40,7 +41,8 @@ class AuthController {
 
             return res.status(200).json({
                 message: "Connexion réussie",
-                token
+                token,
+                role: user.rolename
             });
 
         } catch (err) {
