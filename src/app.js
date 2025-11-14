@@ -24,6 +24,9 @@ app.use(
     })
 );
 
+import authRoutes from "./routes/authRoutes.js";
+app.use("/api/auth", authRoutes);
+
 import userRoutes from "./routes/userRoutes.js";
 app.use("/api/users", userRoutes);
 

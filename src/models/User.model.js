@@ -18,8 +18,12 @@ class User{
     }
 
     static async findByEmail(email) {
-        const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-        return result.rows[0];
+        const result = await pool.query(`SELECT u.*, r.name AS roleName
+                                         FROM users u
+                                         JOIN roles r ON u.id_role = r.id_role
+                                         WHERE u.email = $1`,
+                                         [email]);
+    return result.rows[0];
     }
 
     static async create( username, email, password, id_role ){
