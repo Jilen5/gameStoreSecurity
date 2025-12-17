@@ -1,7 +1,13 @@
 import app from "./app.js";
+import https from "https";
+import fs from "fs";
 
-const PORT = process.env.PORT || 3000;
+//Utilisation du certificat et de la clé privée
+const options = {
+  key: fs.readFileSync("localhost+2-key.pem"),
+  cert: fs.readFileSync("localhost+2.pem"),
+};
 
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}/`)
-);
+https.createServer(options, app).listen(3000, () => {
+  console.log("HTTPS actif sur https://localhost:3000");
+});

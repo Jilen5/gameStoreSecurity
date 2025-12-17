@@ -5,12 +5,31 @@ import errorHandler from "./middlewares/Errors.js";
 import connectMongo from "./config/db.mongo.js";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./swagger.js";
+import helmet from "helmet";
 
 const app = express();
 connectMongo();
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
+//Configuration de CORS
+const allowedOrigins = [
+  "https://localhost:3000"
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization"
+    ],
+    credentials: true,
+  })
+);
+
+//Configuration du rate limiter
 const limiter = rateLimit({
     windowMs: 60*1000,
     max: 10,
@@ -25,6 +44,48 @@ const limiter = rateLimit({
 if (process.env.NODE_ENV !== "test") {
     app.use(limiter);
 }
+
+//Redirection HTTP => HTTPS côté serveur
+app.use((req, res, next) => {
+  if (!req.secure) {
+    return res.redirect("https://" + req.headers.host + req.url);
+  }
+  next();
+});
+
+//Redirection HTTP => HTTPS côté navigateur et empêche toute utilisation de HTTP
+app.use(
+  helmet.hsts({
+    maxAge: 86400,
+    includeSubDomains: false,
+  })
+);
+
+//Empêche les injections XSS déguisées
+helmet.noSniff();
+//Empêche les attaques de clickjacking
+helmet.frameguard({ action: "deny" });
+//Limiter les informations de l'url en dehors du domaine
+helmet.referrerPolicy({policy: "strict-origin-when-cross-origin"});
+//Limiter les interactions avec d'autres sites
+helmet.crossOriginOpenerPolicy({policy: "same-origin"});
+//Restreint le chargement de ressources par un autre domaine
+helmet.crossOriginResourcePolicy({policy: "same-origin"});
+//Isole les données du site dans le navigateur
+helmet.originAgentCluster();
+//Empêche les injections XSS
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "defaultSrc": ["'self'"],
+        "scriptSrc": ["'self'"],
+        "connectSrc": ["'self'"],
+        "styleSrc": ["'self'"]
+      },
+    },
+  })
+);
 
 import authRoutes from "./routes/authRoutes.js";
 app.use("/api/auth", authRoutes);
