@@ -5,6 +5,7 @@ import errorHandler from "./middlewares/Errors.js";
 import connectMongo from "./config/db.mongo.js";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./swagger.js";
+import helmet from "helmet";
 
 const app = express();
 connectMongo();
@@ -25,6 +26,36 @@ const limiter = rateLimit({
 if (process.env.NODE_ENV !== "test") {
     app.use(limiter);
 }
+
+//Redirection HTTP => HTTPS côté serveur
+app.use((req, res, next) => {
+  if (!req.secure) {
+    return res.redirect("https://" + req.headers.host + req.url);
+  }
+  next();
+});
+
+//Redirection HTTP => HTTPS côté navigateur et empêche toute utilisation de HTTP
+app.use(
+  helmet.hsts({
+    maxAge: 86400,
+    includeSubDomains: false,
+  })
+);
+
+//Empêche les injections XSS
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "defaultSrc": ["'self'"],
+        "script-src": ["'self'"],
+        "connectSrc": ["'self'"],
+        "styleSrc": ["'self'"]
+      },
+    },
+  })
+);
 
 import authRoutes from "./routes/authRoutes.js";
 app.use("/api/auth", authRoutes);
