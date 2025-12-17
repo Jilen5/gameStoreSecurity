@@ -11,7 +11,25 @@ const app = express();
 connectMongo();
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
+//Configuration de CORS
+const allowedOrigins = [
+  "https://localhost:3000"
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization"
+    ],
+    credentials: true,
+  })
+);
+
+//Configuration du rate limiter
 const limiter = rateLimit({
     windowMs: 60*1000,
     max: 10,
@@ -55,7 +73,6 @@ helmet.crossOriginOpenerPolicy({policy: "same-origin"});
 helmet.crossOriginResourcePolicy({policy: "same-origin"});
 //Isole les données du site dans le navigateur
 helmet.originAgentCluster();
-
 //Empêche les injections XSS
 app.use(
   helmet({
