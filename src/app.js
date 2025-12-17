@@ -43,13 +43,26 @@ app.use(
   })
 );
 
+//Empêche les injections XSS déguisées
+helmet.noSniff();
+//Empêche les attaques de clickjacking
+helmet.frameguard({ action: "deny" });
+//Limiter les informations de l'url en dehors du domaine
+helmet.referrerPolicy({policy: "strict-origin-when-cross-origin"});
+//Limiter les interactions avec d'autres sites
+helmet.crossOriginOpenerPolicy({policy: "same-origin"});
+//Restreint le chargement de ressources par un autre domaine
+helmet.crossOriginResourcePolicy({policy: "same-origin"});
+//Isole les données du site dans le navigateur
+helmet.originAgentCluster();
+
 //Empêche les injections XSS
 app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
         "defaultSrc": ["'self'"],
-        "script-src": ["'self'"],
+        "scriptSrc": ["'self'"],
         "connectSrc": ["'self'"],
         "styleSrc": ["'self'"]
       },
