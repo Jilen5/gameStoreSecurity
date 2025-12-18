@@ -13,11 +13,12 @@ CREATE TABLE roles(
 
 CREATE TABLE users(
    id_user SERIAL PRIMARY KEY,
-   username VARCHAR(50) NOT NULL,
-   email VARCHAR(100) NOT NULL,
+   username TEXT NOT NULL,
+   email_enc TEXT NOT NULL,
+   email_hash CHAR(64) NOT NULL,
    password VARCHAR(200) NOT NULL,
    id_role INT NOT NULL,
-   UNIQUE(email),
+   UNIQUE(email_hash),
    FOREIGN KEY(id_role) REFERENCES roles(id_role)
 );
 
@@ -62,9 +63,6 @@ CREATE TABLE user_Games(
 );
 
 INSERT INTO roles (name) VALUES ('admin'), ('user');
-INSERT INTO users (username, email, password, id_role)
-VALUES ('Alice', 'alice@test.com', '<hashed_pwd>', 2),
-       ('Bob', 'bob@test.com', '<hashed_pwd>', 1);
 INSERT INTO games (name, price, description)
 VALUES ('Rocket League', 0.0, 'Un jeu avec des voitures qui font du foot');
 INSERT INTO categories (name)

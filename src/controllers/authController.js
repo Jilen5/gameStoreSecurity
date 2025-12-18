@@ -47,8 +47,8 @@ class AuthController {
             const newUser = await User.create(username, email, hashedPassword, id_role);
 
             return res.status(201).json({
-                message: "Utilisateur créé avec succès",
-                user: newUser
+              message: "Utilisateur créé avec succès",
+              user: User.displayWithoutCrypto(newUser),
             });
 
         } catch (err) {
@@ -74,7 +74,6 @@ class AuthController {
 
               req.session.user = {
                 id: user.id_user,
-                email: user.email,
                 role: user.rolename,
               };
 
