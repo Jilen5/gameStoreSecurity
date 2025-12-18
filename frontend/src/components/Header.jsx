@@ -11,6 +11,9 @@ export default function Header() {
 			<nav style={{ display: 'flex', gap: 12 }}>
 				<Link to="/">Accueil</Link>
 			</nav>
+            <nav style={{ display: 'flex', gap: 12 }}>
+                <Link to="/login">Se connecter</Link>
+            </nav>
 		</header>
 	)
 }
