@@ -1,4 +1,5 @@
 import Profile from "../models/Profiles.model.js";
+import Joi from "joi";
 
 const profileSchema = Joi.object({
   userId: Joi.number().integer().required(),

@@ -1,4 +1,5 @@
 import Game from "../models/game.model.js";
+import Joi from "joi";
 
 const gameSchema = Joi.object({
   name: Joi.string().min(1).max(100).required(),
