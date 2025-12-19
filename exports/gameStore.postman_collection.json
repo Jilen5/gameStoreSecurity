@@ -22,8 +22,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/users",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -49,8 +49,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/users/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -71,7 +71,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"Alice\",\r\n    \"email\": \"alice@test2.com\",\r\n    \"password\": \"<hashed_pwd>\"\r\n}",
+							"raw": "{\r\n    \"username\": \"Alex2\",\r\n    \"email\": \"alex@test1.com\",\r\n    \"password\": \"dcs5dSS!rxqxsqs\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -79,8 +79,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/users/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -100,8 +100,8 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users/2",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/users/2",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -133,8 +133,8 @@
 							"raw": "{\r\n    \"username\": \"Alice\",\r\n    \"email\": \"alice@test2.com\",\r\n    \"password\": \"<hashed_pwd>\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comments",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/comments",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -153,8 +153,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/comments/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/comments/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -175,7 +175,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"Très bon jeu !\",\r\n    \"note\": 9,\r\n    \"type\": \"positif\",\r\n    \"id_user\": 1,\r\n    \"id_game\": 1\r\n}",
+							"raw": "{\r\n    \"content\": \"Très bon jeu !\",\r\n    \"note\": 9,\r\n    \"type\": \"review\",\r\n    \"id_user\": 1,\r\n    \"id_game\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -183,8 +183,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comments",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/comments",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -212,8 +212,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comments/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/comments/4",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -221,7 +221,7 @@
 							"path": [
 								"api",
 								"comments",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -237,8 +237,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comments/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/comments/4",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -246,7 +246,7 @@
 							"path": [
 								"api",
 								"comments",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -270,8 +270,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/games",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/games",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -297,8 +297,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/games/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/games/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -327,8 +327,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/games",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/games",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -356,8 +356,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/games/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/games/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -381,8 +381,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/games/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/games/2",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -390,7 +390,7 @@
 							"path": [
 								"api",
 								"games",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -407,8 +407,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/categories",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/categories",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -427,8 +427,8 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/categories/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/categories/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -457,8 +457,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/categories",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/categories",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -486,8 +486,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/categories/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/categories/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -507,8 +507,8 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/categories/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/categories/3",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -516,7 +516,7 @@
 							"path": [
 								"api",
 								"categories",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -545,8 +545,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/profiles",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/profiles",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -572,8 +572,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/profiles/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/profiles/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -602,8 +602,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/profiles",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/profiles",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -631,8 +631,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/profiles/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/profiles/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -656,8 +656,8 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/profiles/1",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/profiles/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -677,13 +677,13 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "/api/users/register",
+					"name": "/api/auth/register",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"Alex\",\r\n    \"email\": \"alex@test.com\",\r\n    \"password\": \"motdepasse123\"\r\n}\r\n",
+							"raw": "{\r\n    \"username\": \"Jean\",\r\n    \"email\": \"jean@test.com\",\r\n    \"password\": \"dnssuhQT45!dezk\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -691,8 +691,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/register",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/auth/register",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -707,13 +707,13 @@
 					"response": []
 				},
 				{
-					"name": "/api/users/login",
+					"name": "/api/auth/login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"Alex\",\r\n    \"email\": \"alex@test.com\",\r\n    \"password\": \"motdepasse123\"\r\n}\r\n",
+							"raw": "{\r\n    \"email\": \"jean@test.com\",\r\n    \"password\": \"dnssuhQT45!dezk\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -721,8 +721,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/login",
-							"protocol": "http",
+							"raw": "https://localhost:3000/api/auth/login",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -731,6 +731,27 @@
 								"api",
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:3000/api/auth/logout",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"logout"
 							]
 						}
 					},
